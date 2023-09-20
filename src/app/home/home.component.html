@@ -1,0 +1,37 @@
+<div>
+  <app-carousel></app-carousel>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <!-- Loop through recipes -->
+    <div class="col-md-4 mb-4" *ngFor="let recipe of recipes">
+      <a [routerLink]="['/recipe-details', recipe.id]" class="card-link">
+      <div class="card h-100">
+        <div class="card-body d-flex flex-column justify-content-between">
+          <a [routerLink]="'/recipe-details/' + recipe.id" class="text-reset text-decoration-none">
+            <img  src="{{'data:image/jpg;base64,' + recipe.imageData}}" class="card-img-top recipe-img" [alt]="recipe.name">
+            <div>
+              <h5 class="card-title mt-3">{{ recipe.name }}</h5>
+              <p class="card-text">{{ recipe.description }}</p>
+            </div>
+            <div class="mt-2">
+              <div>
+                <i class="fas fa-user me-1"></i>
+                <span>{{ recipe.userName }}</span>
+              </div>
+              <div>
+                <i class="fas fa-users"></i> {{ recipe.servingSize }}
+              </div>
+              <div>
+                <i class="fas fa-clock"></i> {{ recipe.preparationTime }}
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </a>
+    </div>
+    <!-- End loop -->
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<form class="px-4 py-3" #loginForm="ngForm" (ngSubmit)="onSubmit($event)">
+    <div class="mb-3">
+        <label for="userName" class="form-label">Kullanıcı adı</label>
+        <input type="text" class="form-control" id="userName" placeholder="Kullanıcı adı" [(ngModel)]="userName" name="userName">
+        <div *ngIf="loginForm.controls['userName']?.invalid && loginForm.controls['userName']?.touched">
+            <div *ngIf="loginForm.controls['userName'].hasError('required')">Kullanıcı adı zorunludur.</div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Şifre</label>
+        <input type="password" class="form-control" id="password" placeholder="Şifre" [(ngModel)]="password" name="password">
+        <div *ngIf="loginForm.controls['password']?.invalid && loginForm.controls['password']?.touched">
+            <div *ngIf="loginForm.controls['password'].hasError('required')">Şifre zorunludur.</div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Giriş yap</button>
+</form>
+

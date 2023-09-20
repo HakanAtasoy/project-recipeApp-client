@@ -1,0 +1,61 @@
+  <div #paginationContainer class="container mt-3">
+
+    <div class="container mt-5">
+        <h2 class="mb-4">Favorilerim</h2>
+        <div class="row">
+            <!-- Loop through the recipes and display each result -->
+            <div class="col-md-4 mb-4" *ngFor="let favorite of favorites">
+              <a [routerLink]="['/recipe-details', favorite.recipeModel.id]" class="card-link">
+              <div class="card h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                  <img src="{{'data:image/jpg;base64,' + favorite.recipeModel.imageData}}" class="card-img-top recipe-img" alt="{{ favorite.recipeModel.name }}" />
+                  <div>
+                      <h5 class="card-title mt-3">{{ favorite.recipeModel.name }}</h5>
+                      <p class="card-text">{{ favorite.recipeModel.description }}</p>
+                    </div>
+                        <div class="mt-auto">
+                            <a class="btn btn-danger btn-sm" (click)="$event.preventDefault();$event.stopPropagation(); confirmDelete(favorite)">
+                              <i class="fas fa-trash-alt"></i> <!-- Delete Icon -->
+                            </a>                                                                                  
+                        </div>
+                    <div class="mt-2">
+                      <div>
+                        <i class="fas fa-user me-1"></i>
+                        <span>{{ favorite.recipeModel.userName }}</span>
+                      </div>
+                      <div>
+                        <i class="fas fa-users"></i> {{ favorite.recipeModel.servingSize }}
+                      </div>
+                      <div>
+                        <i class="fas fa-clock"></i> {{ favorite.recipeModel.preparationTime }}
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </a>
+            </div>
+          </div>
+    
+    <div class="container mt-3">
+        <!-- Display pagination controls based on totalPages -->
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center" style="width: 300px;"> <!-- Set a fixed width -->
+            <li class="page-item" *ngIf="totalPages > 1">
+              <a class="page-link" href="javascript:void(0);" aria-label="Previous" (click)="goToPage(currentPage - 1)">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item" *ngFor="let page of getPagesArray()">
+              <!--<a class="page-link" href="#" [attr.href]="getPageUrl(page)" (click)="goToPage(page)">{{ page }}</a>-->
+              <a class="page-link" href="javascript:void(0);" (click)="goToPage(page)">{{ page }}</a>
+            </li>
+            <li class="page-item" *ngIf="totalPages > 1">
+              <a class="page-link" href="javascript:void(0);" (click)="goToPage(currentPage + 1)">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      
+    </div>

@@ -1,0 +1,49 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Signup</h2>
+  <form (submit)="onSubmit($event)" [formGroup]="signupForm">
+    <div class="mb-3">
+      <label for="userName" class="form-label">Kullanıcı Adı:</label>
+      <input type="text" formControlName="userName" class="form-control">
+      <div *ngIf="signupForm.get('userName')?.hasError('required') && signupForm.get('userName')?.touched">
+        <span class="error-asterisk" style="color: red;">*</span> Kullanıcı adı zorunludur.
+      </div>
+      <div *ngIf="signupForm.get('userName')?.hasError('maxlength')">
+        <span class="error-asterisk" style="color: red;">*</span> Kullanıcı adı 20 karakterden uzun olamaz.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="firstName" class="form-label">Ad:</label>
+      <input type="text" formControlName="firstName" class="form-control">
+      <div *ngIf="signupForm.get('firstName')?.hasError('required') && signupForm.get('firstName')?.touched">
+        <span class="error-asterisk" style="color: red;">*</span> Ad alanı zorunludur.
+      </div>
+      <div *ngIf="signupForm.get('firstName')?.hasError('maxlength')">
+        <span class="error-asterisk" style="color: red;">*</span> Ad 20 karakterden uzun olamaz.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Soyad:</label>
+      <input type="text" formControlName="lastName" class="form-control" >
+      <div *ngIf="signupForm.get('lastName')?.hasError('required') && signupForm.get('lastName')?.touched">
+        <span class="error-asterisk" style="color: red;">*</span> Soyad alanı zorunludur.
+      </div>
+      <div *ngIf="signupForm.get('lastName')?.hasError('maxlength')">
+        <span class="error-asterisk" style="color: red;">*</span> Soyad 20 karakterden uzun olamaz.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Şifre:</label>
+      <input type="password" formControlName="password" class="form-control">
+      <div *ngIf="signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched">
+        <span class="error-asterisk" style="color: red;">*</span> Şifre zorunludur.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydol</button>
+  </form>
+</div>
+
+

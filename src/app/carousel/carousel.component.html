@@ -1,0 +1,7 @@
+<ngb-carousel [interval]="3000">
+    <ng-template ngbSlide *ngFor="let image of images">
+        <div class="carousel-wrapper">
+            <img class="d-block mx-auto" src="assets/{{image.name}}" [alt]="image.caption">
+        </div>
+    </ng-template>
+</ngb-carousel>

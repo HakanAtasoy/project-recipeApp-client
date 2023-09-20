@@ -1,0 +1,12 @@
+/* Add this CSS to your component's styles or your global styles */
+.carousel-controls .carousel-control-prev-icon {
+  color: black; /* Change the "previous" icon color to black or any color you prefer */
+}
+
+.carousel-controls .carousel-control-next-icon {
+  color: black !important;/* Change the "next" icon color to black or any color you prefer */
+}
+
+
+
+  

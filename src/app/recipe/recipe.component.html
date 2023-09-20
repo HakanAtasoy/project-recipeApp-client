@@ -1,0 +1,56 @@
+<div class="container mt-5">
+    <h2>{{ isEdit ? 'Tarifi Düzenle' : 'Yeni Tarif Ekle' }}</h2>
+    <form (ngSubmit)="onSaveClick()" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="categorySelect" class="form-label">Kategori</label>
+            <select class="form-select" id="categorySelect" name="categorySelect" [(ngModel)]="categorySearch" (keyup)="filterCategories()">
+              <!-- <option value="" disabled>Select a category or start typing to search</option> -->
+              <option *ngFor="let category of filteredCategories" [ngValue]="category.name">{{ category.name }}</option>
+            </select>
+          </div>
+          
+                  
+        <div class="mb-3">
+            <label for="recipeTitle" class="form-label">Tarif Adı</label>
+            <input type="text" class="form-control" id="recipeTitle" name="recipeTitle" required [(ngModel)]="recipe.name">
+        </div>
+
+        <div class="mb-3">
+            <label for="recipeDescription" class="form-label">Tarif açıklaması</label>
+            <textarea class="form-control" id="recipeDescription" name="recipeDescription" rows="4" required [(ngModel)]="recipe.description"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="recipeImage" class="form-label">Tarif resmi</label>
+            <input type="file" (change)="onFileSelected($event)" class="form-control" id="recipeImage" name="imageFile" accept="image/*" required lang="tr">
+        </div>
+        
+        <div id="imagePreview" class="mb-3" [style.display]="existingImageUrl || imageUrl ? 'block' : 'none'">
+            <img [src]="imageUrl ? imageUrl : existingImageUrl" alt="Image Preview" style="max-width: 200px; height: auto;">
+        </div>
+        
+        <div class="mb-3">
+            <label for="recipePeople" class="form-label">Kişi Sayısı</label>
+            <select class="form-select" id="recipePeople" name="recipePeople" required [(ngModel)]="recipe.servingSize">
+                <option value="1 kişilik">1 kişilik</option>
+                <option value="2-4 kişilik">2-4 kişilik</option>
+                <option value="4-6 kişilik">4-6 kişilik</option>
+                <option value="6+ kişilik">6+ kişilik</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="recipeTime" class="form-label">Hazırlama Süresi</label>
+            <select form class="form-select" id="recipeTime" name="recipeTime" required [(ngModel)]="recipe.preparationTime">
+                <option value="15 dakikadan az">15 dakikadan az</option>
+                <option value="15-30 dakika">15-30 dakika</option>
+                <option value="30 dakika - 1 saat">30 dakika - 1 saat</option>
+                <option value="1 saatten fazla">1 saatten fazla</option>
+            </select>
+        </div>
+
+        <!-- Ingredients list here, you can handle this part as per your requirements -->
+
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </form>
+</div>

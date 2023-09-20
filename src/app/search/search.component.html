@@ -1,0 +1,78 @@
+<!-- Search Form -->
+<div #paginationContainer class="container mt-3">
+  <div class="container mt-5">
+      <div class="row justify-content-center">
+          <div class="col-md-6">
+              <form class="input-group" (ngSubmit)="performSearch(searchQuery.value, 0, 1)">
+                  <input
+                      type="text"
+                      class="form-control me-2"
+                      placeholder="Tarif arayın..."
+                      #searchQuery
+                  />
+                  <button class="btn btn-primary" type="submit">Ara</button>
+              </form>
+          </div>
+      </div>
+  </div>
+
+  <div class="container mt-3" *ngIf="searched">
+    <div class="text-center" *ngIf="searchQueryValue && searchQueryValue.trim() !== ''">
+        "{{ searchQueryValue }}" için arama sonuçları
+      </div>      
+  </div>
+
+  <div class="container mt-5">
+      <div class="row">
+          <!-- Loop through the recipes and display each result -->
+          <div class="col-md-4 mb-4" *ngFor="let recipe of recipes">
+            <a [routerLink]="['/recipe-details', recipe.id]" class="card-link">
+              <div class="card h-100">
+                      <div class="card-body d-flex flex-column justify-content-between">
+                          <img src="{{ 'data:image/jpg;base64,' + recipe.imageData }}" class="card-img-top recipe-img" alt="{{ recipe.name }}" />
+                          <div>
+                              <h5 class="card-title mt-3">{{ recipe.name }}</h5>
+                              <p class="card-text">{{ recipe.description }}</p>
+                          </div>
+                          <div class="mt-2">
+                              <div>
+                                  <i class="fas fa-user me-1"></i>
+                                  <span>{{ recipe.userName }}</span>
+                              </div>
+                              <div>
+                                  <i class="fas fa-users"></i> {{ recipe.servingSize }}
+                              </div>
+                              <div>
+                                  <i class="fas fa-clock"></i> {{ recipe.preparationTime }}
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </a>
+          </div>
+      </div>
+  </div>
+
+  <!-- Your pagination content here -->
+  <div class="container mt-3">
+      <!-- Display pagination controls based on totalPages -->
+      <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center" style="width: 300px;"> <!-- Set a fixed width -->
+              <li class="page-item" *ngIf="totalPages > 1">
+                  <a class="page-link" href="javascript:void(0);" aria-label="Previous" (click)="goToPage(currentPage - 1)">
+                      <span aria-hidden="true">&laquo;</span>
+                  </a>
+              </li>
+              <li class="page-item" *ngFor="let page of getPagesArray()">
+                  <!--<a class="page-link" href="#" [attr.href]="getPageUrl(page)" (click)="goToPage(page)">{{ page }}</a>-->
+                  <a class="page-link" href="javascript:void(0);" (click)="goToPage(page)">{{ page }}</a>
+              </li>
+              <li class="page-item" *ngIf="totalPages > 1">
+                  <a class="page-link" href="javascript:void(0);" aria-label="Next" (click)="goToPage(currentPage + 1)">
+                      <span aria-hidden="true">&raquo;</span>
+                  </a>
+              </li>
+          </ul>
+      </nav>
+  </div>
+</div>

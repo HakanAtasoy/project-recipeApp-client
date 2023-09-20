@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">{{website_name}}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/">Ana Sayfa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/categories">Kategoriler</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search" (ngSubmit)="onSearch()">
+          <input class="form-control me-2" type="search" [(ngModel)]="searchQuery" name="searchQuery" style="width: 400px;" placeholder="Arama" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>        
+        <ul class="navbar-nav ml-auto">
+          <!-- Display these links if the user is not logged in -->
+          <ng-container *ngIf="!authService.isLoggedIn()">
+            <li class="nav-item ml-3">
+              <a class="nav-link" routerLink="/auth/signup">
+                <i class="fas fa-user-plus"></i> Kayıt Ol
+              </a>
+            </li>
+            <li class="nav-item ml-3 dropdown">
+              <a class="nav-link" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-sign-in-alt"></i> Giriş yap
+              </a>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown" style="width: 250px;">
+                <app-login></app-login>
+              </div>
+            </li>
+          </ng-container>
+          <!-- Hide these links if the user is logged in -->
+          <ng-container *ngIf="authService.isLoggedIn()">
+            <li class="nav-item ml-3">
+              <div class="user-dropdown">
+                <a class="nav-link" href="#" id="userDropdown" data-bs-toggle="dropdown">
+                  <span>
+                    <i class="fas fa-user"></i>
+                    {{ username }}
+                  </span>
+                </a>                           
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown" style="width: 250px;">
+                  <a class="dropdown-item" routerLink="/my-recipes">Tariflerim</a>
+                  <a class="dropdown-item" routerLink="/my-favorites">Favorilerim</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" (click)="logoutUser()">
+                    Çıkış yap
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  

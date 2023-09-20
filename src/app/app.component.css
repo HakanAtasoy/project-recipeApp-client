@@ -1,0 +1,17 @@
+.content-body {
+    margin-top: 50px; /* Adjust the margin value as needed */
+}
+.content{
+    min-height: 100vh;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+footer {
+    bottom: 0;
+    background-color: #343a40; /* Dark background color */
+    color: #ffffff; /* White text color */
+    padding: 20px 0; /* Vertical and horizontal padding */
+}

@@ -1,0 +1,51 @@
+.recipe-img {
+    height: 500px; /* Set a fixed height for the images */
+    object-fit: cover; /* Maintain aspect ratio and cover container */
+}
+
+.body {margin-top:20px;
+background:#ebeef0;
+}
+
+.img-sm {
+width: 46px;
+height: 46px;
+}
+
+/* Comment section */
+.media-block {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+/* User avatar */
+.img-avatar {
+  width: 50px; /* Adjust as needed */
+  height: 50px; /* Adjust as needed */
+  border-radius: 50%;
+  margin-right: 10px;
+  align-self: flex-start; /* Align the image at the top */
+}
+
+
+/* Username and date */
+h5 {
+  font-size: 16px; /* Increase font size for username */
+  margin: 0;
+}
+
+.text-muted {
+  font-size: 12px;
+  display: inline; /* Display date inline with username */
+  margin-left: 5px; /* Add a small margin between username and date */
+}
+
+/* Comment text */
+.text-comment {
+  font-size: 16px; /* Increase font size for comments */
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+
