@@ -11,7 +11,7 @@
                   <img src="{{'data:image/jpg;base64,' + favorite.recipeModel.imageData}}" class="card-img-top recipe-img" alt="{{ favorite.recipeModel.name }}" />
                   <div>
                       <h5 class="card-title mt-3">{{ favorite.recipeModel.name }}</h5>
-                      <p class="card-text">{{ favorite.recipeModel.description }}</p>
+                      <p class="card-text">{{ favorite.recipeModel.description | slice:0:80 }}{{ favorite.recipeModel.description.length > 80 ? '...' : '' }}</p>
                     </div>
                         <div class="mt-auto">
                             <a class="btn btn-danger btn-sm" (click)="$event.preventDefault();$event.stopPropagation(); confirmDelete(favorite)">

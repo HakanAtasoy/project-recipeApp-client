@@ -1,23 +1,21 @@
-<!-- Search Form -->
-
 <div #paginationContainer class="container mt-3">
-   
-      <div class="container mt-5">
-        <h2 class="mb-4">Kategoriler</h2> <!-- Added mb-4 class for margin-bottom -->
-        <div class="row">
-          <!-- Loop through the categories and display each result -->
-          <div class="col-md-4 mb-4" *ngFor="let category of categories" (click)="navigateToRecipes(category.id)" >
-            <div class="card h-100">
-              <div class="card-body d-flex flex-column justify-content-between">
-                <img src="{{'data:image/jpg;base64,' + category.imageData}}" class="card-img-top category-img" alt="{{ category.name }}" />
-                <div>
-                    <h5 class="card-title mt-3">{{ category.name }}</h5>
-                    <p class="card-text">{{ category.description }}</p>
-              </div>
+  <div class="container mt-5">
+    <h2 class="mb-4">Kategoriler</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let category of categories" (click)="navigateToRecipes(category.id)">
+        <div class="card h-100">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <img src="{{'data:image/jpg;base64,' + category.imageData}}" class="card-img-top category-img" alt="{{ category.name }}" />
+            <div>
+              <h5 class="card-title mt-3">{{ category.name }}</h5>
+              <p class="card-text">{{ category.description | slice:0:80 }}{{ category.description.length > 80 ? '...' : '' }}</p>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
     
         <!-- Your pagination content here -->
       <div class="container mt-3">

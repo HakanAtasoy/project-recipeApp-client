@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { Category } from '../category/category.model';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from '../services/category.service';
-import { categoryPage } from '../category/categoryPage.model';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-category',
   templateUrl: './add-category.component.html',
@@ -30,6 +29,7 @@ export class AddCategoryComponent {
 
   constructor(private route: ActivatedRoute,
     private categoryService: CategoryService,
+    private router: Router
     ) {}
 
     ngOnInit() {
@@ -62,6 +62,7 @@ export class AddCategoryComponent {
 
     onFileSelected(event: any) {
       const file = event.target.files[0];
+      this.file = file;
       const reader = new FileReader();
   
       reader.onload = () => {
@@ -84,6 +85,7 @@ export class AddCategoryComponent {
       this.categoryService.editCategory(this.category, this.file).subscribe({
         next: (response) => {
           console.log('category edited successfully:', response);
+          this.router.navigate(['/manage-categories']);
         },
         error: (error) => {
           console.error('Error editing category:', error);
@@ -94,6 +96,7 @@ export class AddCategoryComponent {
       this.categoryService.addCategory(this.category, this.file).subscribe({
         next: (response) => {
           console.log('category added successfully:', response);
+          this.router.navigate(['/manage-categories']);
         },
         error: (error) => {
           console.error('Error adding category:', error);

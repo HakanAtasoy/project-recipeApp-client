@@ -14,7 +14,7 @@ export class NavComponent implements OnInit{
   searchQuery: string = '';
   username: string | null = '';
   role: string | null = '';
-  website_name: string = "EnfesYemekTarifleri"
+  website_name: string = "HUMUS"
   constructor(public authService: AuthService, private router: Router, 
     private activatedRoute: ActivatedRoute  // Inject ActivatedRoute
     ) {}

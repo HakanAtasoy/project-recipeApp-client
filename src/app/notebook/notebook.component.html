@@ -12,7 +12,7 @@
                   <img src="{{'data:image/jpg;base64,' + recipe.imageData}}" class="card-img-top recipe-img" alt="{{ recipe.name }}" />
                   <div>
                       <h5 class="card-title mt-3">{{ recipe.name }}</h5>
-                      <p class="card-text">{{ recipe.description }}</p>
+                      <p class="card-text">{{ recipe.description | slice:0:80 }}{{ recipe.description.length > 80 ? '...' : '' }}</p>
                     </div>
                         <div class="mt-auto">
                             <a [routerLink]="['/edit-recipe', recipe.id]" class="btn btn-primary btn-sm me-2">

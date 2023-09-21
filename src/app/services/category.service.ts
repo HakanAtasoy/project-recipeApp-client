@@ -36,21 +36,26 @@ import { Category } from '../category/category.model';
       if (user && user.token) {
         // If a token is available in the user object, use it for authentication
         const formData = new FormData();
-  
+
         const categoryModelJson = JSON.stringify(categoryModel);
-        // Append categoryModel as a part
-        formData.append('categoryModel', categoryModelJson);
         formData.append('imageFile', file);
-  
+
+        formData.append('categoryModel', new Blob([categoryModelJson], { type: 'application/json' }));
+
         const headers = new HttpHeaders({
-          'Authorization': `Bearer ${user.token}`
+          'Authorization': `Bearer ${user.token}`,
+          //'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json'
         });
-    
-        return this.http.post(`${this.apiUrl}/categories`, formData, { headers });
-      } else {
-        // Handle the case where there is no token (e.g., user not logged in)
-        throw new Error('Unauthorize'); // You can throw an error or handle it as needed
-      }
+        const options = {
+          headers: headers,
+    };
+  
+      return this.http.post(`${this.apiUrl}/categories`, formData, options);
+    } else {
+      // Handle the case where there is no token (e.g., user not logged in)
+      throw new Error('Unauthorize'); // You can throw an error or handle it as needed
+    }
     }
 
     editCategory(categoryModel: Category, file: File): Observable<any> {
@@ -59,21 +64,26 @@ import { Category } from '../category/category.model';
       if (user && user.token) {
         // If a token is available in the user object, use it for authentication
         const formData = new FormData();
-  
+
         const categoryModelJson = JSON.stringify(categoryModel);
-        // Append categoryModel as a part
-        formData.append('categoryModel', categoryModelJson);
         formData.append('imageFile', file);
-  
+
+        formData.append('categoryModel', new Blob([categoryModelJson], { type: 'application/json' }));
+
         const headers = new HttpHeaders({
-          'Authorization': `Bearer ${user.token}`
+          'Authorization': `Bearer ${user.token}`,
+          //'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json'
         });
-    
-        return this.http.put(`${this.apiUrl}/categories`, formData, { headers });
-      } else {
-        // Handle the case where there is no token (e.g., user not logged in)
-        throw new Error('Unauthorize'); // You can throw an error or handle it as needed
-      }
+        const options = {
+          headers: headers,
+    };
+  
+      return this.http.put(`${this.apiUrl}/categories`, formData, options);
+    } else {
+      // Handle the case where there is no token (e.g., user not logged in)
+      throw new Error('Unauthorize'); // You can throw an error or handle it as needed
+    }
     }
 
     deleteCategory(categoryId : number): Observable<boolean> {
