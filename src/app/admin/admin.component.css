@@ -1,0 +1,21 @@
+.admin-panel-link-container {
+    background-color: #3498db; /* Use your desired color */
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 20px; /* Adjust the margin as needed */
+  }
+  
+  .admin-panel-link {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: opacity 0.3s;
+  }
+  
+  .admin-panel-link:hover {
+    opacity: 0.8;
+  }
+  
+  

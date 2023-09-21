@@ -2,9 +2,11 @@ export interface Category{
     id: number;
     name: String;
     description: String;
-    createDate: Date;
-    updateDate: Date;
-    deleteDate: Date;
+    createDate: Date | null;
+    updateDate: Date | null;
+    deleteDate: Date | null;
     deleted: boolean;
-    imageData: Blob;
+    imageData: Blob | null;
+    imageUrl?: string; // Add this property for the image URL
+
 }

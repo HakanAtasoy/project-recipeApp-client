@@ -4,7 +4,7 @@ import { Recipe } from './recipe.model';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../category/category.model';
 import { categoryPage } from '../category/categoryPage.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -17,7 +17,7 @@ export class RecipeComponent implements OnInit {
   file!: File;
   imageUrl: string | null = null;
   existingImageUrl: string | null = null;
-  categorySearch: String = ''; // To store the user's search input
+  categorySearch: string = ''; // To store the user's search input
   categories: Category[] = [];
   filteredCategories: Category[] = [];  // Change to Category array
   isEdit: boolean = false;
@@ -42,6 +42,7 @@ export class RecipeComponent implements OnInit {
   constructor(private recipeService: RecipeService,
     private route: ActivatedRoute,
     private categoryService: CategoryService,
+    private router: Router
     ) {}
 
     ngOnInit() {
@@ -56,6 +57,8 @@ export class RecipeComponent implements OnInit {
             this.recipe = data;
             this.isEdit = true;
             this.categorySearch = data.categoryName;
+            console.log(data)
+            console.log(this.recipe)
             // Set the image URL based on imageData
 
             if (data.imageData) {
@@ -76,6 +79,7 @@ export class RecipeComponent implements OnInit {
 
     onFileSelected(event: any) {
       const file = event.target.files[0];
+      this.file = file;
       const reader = new FileReader();
   
       reader.onload = () => {
@@ -95,26 +99,35 @@ export class RecipeComponent implements OnInit {
 
   selectFile(event: any) {
     this.file = event.target.files[0];
+
+    console.log("this.file");
+      console.log(this.file);
   }
 
   onSaveClick() {
 
-  
+    this.recipe.categoryName = this.categorySearch;
+
     if (this.isEdit) {
       // Call your service's method to edit the recipe
       this.recipeService.editRecipe(this.recipe, this.file).subscribe({
         next: (response) => {
           console.log('Recipe edited successfully:', response);
+          this.router.navigate(['/my-recipes']);
         },
         error: (error) => {
           console.error('Error editing recipe:', error);
         },
       });
     } else {
+      console.log("this.file");
+      console.log(this.file);
+
       // Call your service's method to add the recipe
       this.recipeService.addRecipe(this.recipe, this.file).subscribe({
         next: (response) => {
           console.log('Recipe added successfully:', response);
+          this.router.navigate(['/my-recipes']);
         },
         error: (error) => {
           console.error('Error adding recipe:', error);

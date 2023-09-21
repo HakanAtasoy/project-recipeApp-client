@@ -27,6 +27,7 @@ export class AuthService {
           // Store the entire response object in session storage
           sessionStorage.setItem('authResponse', JSON.stringify(response));
           sessionStorage.setItem('username', userName);
+          sessionStorage.setItem('role', response.userModel.role);
           console.log("authResponse")
           this.loggedIn.next(true);
           this.router.navigate(['/']).then(() => {

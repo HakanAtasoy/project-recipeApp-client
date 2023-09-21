@@ -4,5 +4,5 @@ export interface LoginResponse {
   success: boolean;
   token: string;
   message?: string;
-  user: User; // Use the User type
+  userModel: User; // Use the User type
 }

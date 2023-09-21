@@ -13,6 +13,7 @@ export class NavComponent implements OnInit{
 
   searchQuery: string = '';
   username: string | null = '';
+  role: string | null = '';
   website_name: string = "EnfesYemekTarifleri"
   constructor(public authService: AuthService, private router: Router, 
     private activatedRoute: ActivatedRoute  // Inject ActivatedRoute
@@ -22,6 +23,7 @@ export class NavComponent implements OnInit{
   ngOnInit() {
     this.activatedRoute.url.subscribe(() => {
       this.getUserName();
+      this.getRole();
     }); // Call it during initialization
 
   }
@@ -43,5 +45,14 @@ export class NavComponent implements OnInit{
     const storedUsername = sessionStorage.getItem('username');
     this.username = storedUsername ? storedUsername : 'Guest';
     // this.cdr.detectChanges();  // Trigger change detection
+  }
+
+  getRole(): void {
+    const storedRole = sessionStorage.getItem('role');
+    this.role = storedRole;
+    console.log('roleeeeeeeeeeeeeeeee')
+    console.log(this.role)
+    console.log(sessionStorage.getItem("authResponse"))
+
   }
 }

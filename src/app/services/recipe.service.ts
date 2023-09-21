@@ -61,6 +61,8 @@ export class RecipeService {
   }
 
   addRecipe(recipeModel: Recipe, file: File): Observable<any> {
+    console.log(file);
+
     this.authService.checkToken();
     const user = this.authService.getUserInfo();
     if (user && user.token) {
@@ -70,14 +72,28 @@ export class RecipeService {
       recipeModel.userId = user.userModel.id;
       const recipeModelJson = JSON.stringify(recipeModel);
       // Append recipeModel as a part
-      formData.append('recipeModel', recipeModelJson);
+      //formData.append('recipeModel', recipeModelJson);
       formData.append('imageFile', file);
 
+      /*
+      let headers = new HttpHeaders();
+      headers.append('Content-Type', 'multipart/form-data');
+      headers.append('Accept', 'application/json');
+      headers.append('Authorization', `Bearer ${user.token}`)
+      */
+
+      formData.append('recipeModel', new Blob([recipeModelJson], { type: 'application/json' }));
+
       const headers = new HttpHeaders({
-        'Authorization': `Bearer ${user.token}`
+        'Authorization': `Bearer ${user.token}`,
+        //'Content-Type': 'multipart/form-data',
+        'Accept': 'application/json'
       });
+      const options = {
+        headers: headers,
+    };
   
-      return this.http.post(`${this.apiUrl}/recipes`, formData, { headers });
+      return this.http.post(`${this.apiUrl}/recipes`, formData, options);
     } else {
       // Handle the case where there is no token (e.g., user not logged in)
       throw new Error('Unauthorize'); // You can throw an error or handle it as needed
@@ -93,15 +109,20 @@ export class RecipeService {
 
       recipeModel.userId = user.userModel.id;
       const recipeModelJson = JSON.stringify(recipeModel);
-      // Append recipeModel as a part
-      formData.append('recipeModel', recipeModelJson);
       formData.append('imageFile', file);
 
+      formData.append('recipeModel', new Blob([recipeModelJson], { type: 'application/json' }));
+
       const headers = new HttpHeaders({
-        'Authorization': `Bearer ${user.token}`
+        'Authorization': `Bearer ${user.token}`,
+        //'Content-Type': 'multipart/form-data',
+        'Accept': 'application/json'
       });
+      const options = {
+        headers: headers,
+    };
   
-      return this.http.put(`${this.apiUrl}/recipes`, formData, { headers });
+      return this.http.put(`${this.apiUrl}/recipes`, formData, options);
     } else {
       // Handle the case where there is no token (e.g., user not logged in)
       throw new Error('Unauthorize'); // You can throw an error or handle it as needed

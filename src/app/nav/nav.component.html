@@ -49,6 +49,7 @@
                   </span>
                 </a>                           
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown" style="width: 250px;">
+                  <a *ngIf="role === 'ROLE_ADMIN'" class="dropdown-item" routerLink="/admin-panel">Admin Panel</a>
                   <a class="dropdown-item" routerLink="/my-recipes">Tariflerim</a>
                   <a class="dropdown-item" routerLink="/my-favorites">Favorilerim</a>
                   <div class="dropdown-divider"></div>

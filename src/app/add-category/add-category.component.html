@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <h2>{{ isEdit ? 'Kategoriyi Düzenle' : 'Kategori Ekle' }}</h2>
+    <form (ngSubmit)="onSaveClick()" enctype="multipart/form-data">
+                
+        <div class="mb-3">
+            <label for="categoryTitle" class="form-label">Kategori Adı</label>
+            <input type="text" class="form-control" id="categoryTitle" name="categoryTitle" required [(ngModel)]="category.name">
+        </div>
+
+        <div class="mb-3">
+            <label for="categoryDescription" class="form-label">Kategori açıklaması</label>
+            <textarea class="form-control" id="categoryDescription" name="categoryDescription" rows="4" required [(ngModel)]="category.description"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="categoryImage" class="form-label">Kategori resmi</label>
+            <input type="file" (change)="onFileSelected($event)" class="form-control" id="categoryImage" name="imageFile" accept="image/*" required lang="tr">
+        </div>
+        
+        <div id="imagePreview" class="mb-3" [style.display]="existingImageUrl || imageUrl ? 'block' : 'none'">
+            <img [src]="imageUrl ? imageUrl : existingImageUrl" alt="Image Preview" style="max-width: 200px; height: auto;">
+        </div>
+    
+        <!-- Ingredients list here, you can handle this part as per your requirements -->
+
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </form>
+</div>

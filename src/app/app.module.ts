@@ -29,6 +29,9 @@ import { CategoryComponent } from './category/category.component';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { ReviewComponent } from './review/review.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AdminComponent } from './admin/admin.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
 //import {AngularDropDownSearchComponent} from "angular-dropdown-search/projects/angular-drop-down-search/src/lib/angular-drop-down-search.component";
 
 @NgModule({
@@ -47,6 +50,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     CategoryComponent,
     FavoriteComponent,
     ReviewComponent,
+    AdminComponent,
+    AddCategoryComponent,
+    ManageCategoriesComponent,
     //AngularDropDownSearchComponent,
     //NgxDropdownModule,
   ],
